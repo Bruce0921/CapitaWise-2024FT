@@ -1,11 +1,18 @@
-document.getElementById('send-button').addEventListener('click', function() {
+document.getElementById('send-button').addEventListener('click', sendMessage);
+document.getElementById('user-input').addEventListener('keypress', function(event) {
+    if (event.key === 'Enter') {
+        sendMessage();
+    }
+});
+
+function sendMessage() {
     const userInput = document.getElementById('user-input').value;
     if (userInput.trim() !== '') {
         addMessageToChat(userInput, 'user-message');
         getBotResponse(userInput);
         document.getElementById('user-input').value = '';
     }
-});
+}
 
 function addMessageToChat(message, className) {
     const chatBox = document.getElementById('chat-box');
