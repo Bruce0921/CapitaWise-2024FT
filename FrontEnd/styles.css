@@ -129,3 +129,15 @@ header {
     margin-left: 10px;
     text-align: left;
 }
+
+.message a {
+    color: blue;
+    text-decoration: none;
+}
+
+.message a:hover {
+    text-decoration: underline;
+}
+p {
+    margin: 5px 0;
+}

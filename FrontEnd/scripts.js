@@ -1,3 +1,4 @@
+
 document.getElementById('send-button').addEventListener('click', sendMessage);
 document.getElementById('user-input').addEventListener('keypress', function(event) {
     if (event.key === 'Enter') {
@@ -18,7 +19,7 @@ function addMessageToChat(message, className) {
     const chatBox = document.getElementById('chat-box');
     const messageElement = document.createElement('div');
     messageElement.className = `message ${className}`;
-    messageElement.textContent = message;
+    messageElement.innerHTML = marked.parse(message);;
     chatBox.appendChild(messageElement);
     chatBox.scrollTop = chatBox.scrollHeight;
 }
