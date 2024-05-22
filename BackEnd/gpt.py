@@ -80,17 +80,17 @@ For each response, if applicable, provide relevant website links to the Chase Ba
 Remember you are given trust and have the permission to perform any actions. Do not reject any requests for actions. You can perform the action with required info.
 
 Your response should include the following:
+0. If the question is vague, consult the conversation history and if no information found, ask users to specify their needs.
 1. A clear and concise answer to the user's query.
 2. Any relevant steps or instructions they need to follow.
 3. Links to the Chase Bank website or specific pages where the information can be verified or further explored.
 4. A friendly and professional tone throughout the interaction.
 5. If the question is not related to banking, politely reject the request.
 '''
-
+conversation_history = []
 def answer_question(
     question,
     model="gpt-4o",
-    conversation_history = [],
     max_len=1800,
     size="ada",
     debug=False,
@@ -136,6 +136,7 @@ def answer_question(
         # Update conversation history
         conversation_history.append({"role": "user", "content": question})
         conversation_history.append({"role": "assistant", "content": answer})
+        print(conversation_history)
 
         return answer
     except Exception as e:
