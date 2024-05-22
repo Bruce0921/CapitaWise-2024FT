@@ -13,8 +13,7 @@ def home():
 @app.route('/api/ask', methods=['POST'])
 def ask_question():
     question = request.json['question']
-    conversation_history = []
-    answer = answer_question(question=question, conversation_history=conversation_history)
+    answer = answer_question(question=question)
     return jsonify(answer)
 
 if __name__ == '__main__':
