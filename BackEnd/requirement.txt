@@ -1,0 +1,7 @@
+pandas
+openai
+numpy
+scipy
+python-dotenv
+Flask
+flask-cors
