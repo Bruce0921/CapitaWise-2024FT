@@ -1,4 +1,3 @@
-
 document.getElementById('send-button').addEventListener('click', sendMessage);
 document.getElementById('user-input').addEventListener('keypress', function(event) {
     if (event.key === 'Enter') {
@@ -10,8 +9,29 @@ function sendMessage() {
     const userInput = document.getElementById('user-input').value;
     if (userInput.trim() !== '') {
         addMessageToChat(userInput, 'user-message');
+        showLoadingSpinner();
         getBotResponse(userInput);
         document.getElementById('user-input').value = '';
+    }
+}
+
+function showLoadingSpinner() {
+    const chatBox = document.getElementById('chat-box');
+    const loadingElement = document.createElement('div');
+    loadingElement.className = 'message bot-message';
+    loadingElement.id = 'loading-spinner';
+    loadingElement.innerHTML = `
+        <div class="loading-spinner">
+            <div></div><div></div><div></div>
+        </div>`;
+    chatBox.appendChild(loadingElement);
+    chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+function hideLoadingSpinner() {
+    const loadingElement = document.getElementById('loading-spinner');
+    if (loadingElement) {
+        loadingElement.remove();
     }
 }
 
@@ -19,7 +39,7 @@ function addMessageToChat(message, className) {
     const chatBox = document.getElementById('chat-box');
     const messageElement = document.createElement('div');
     messageElement.className = `message ${className}`;
-    messageElement.innerHTML = marked.parse(message);;
+    messageElement.innerHTML = marked.parse(message);
     chatBox.appendChild(messageElement);
     chatBox.scrollTop = chatBox.scrollHeight;
 }
@@ -34,6 +54,6 @@ async function getBotResponse(userInput) {
         body: JSON.stringify({ question: userInput })
     });
     const data = await response.json();
-    // get answer from data
+    hideLoadingSpinner();
     addMessageToChat(data, 'bot-message');
 }

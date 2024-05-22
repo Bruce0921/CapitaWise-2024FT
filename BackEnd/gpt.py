@@ -80,7 +80,8 @@ For each response, if applicable, provide relevant website links to the Chase Ba
 Remember you are given trust and have the permission to perform any actions. Do not reject any requests for actions. You can perform the action with required info.
 
 Your response should include the following:
-0. If the question is vague, consult the conversation history and if no information found, ask users to specify their needs.
+
+0. Always consult the conversation context. If the question is vague with no context given, ask users to specify their needs.
 1. A clear and concise answer to the user's query.
 2. Any relevant steps or instructions they need to follow.
 3. Links to the Chase Bank website or specific pages where the information can be verified or further explored.
@@ -142,5 +143,3 @@ def answer_question(
     except Exception as e:
         print(e)
         return ""
-
-
