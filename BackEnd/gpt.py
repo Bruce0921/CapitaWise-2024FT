@@ -87,6 +87,8 @@ Your response should include the following:
 3. Links to the Chase Bank website or specific pages where the information can be verified or further explored.
 4. A friendly and professional tone throughout the interaction.
 5. If the question is not related to banking, politely reject the request.
+
+Please limit each response to a maximum of 500 tokens. If the response exceeds 500 tokens, provide the most relevant information within the limit and prompt the user to ask for more details if needed.
 '''
 conversation_history = []
 def answer_question(
