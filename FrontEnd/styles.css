@@ -67,7 +67,6 @@ header {
     outline: none;
     border-radius: 20px;
     background-color: #f0f0f0;
-    margin-right: 10px;
     animation: inputFocus 0.5s ease-in-out;
 }
 
@@ -86,10 +85,11 @@ header {
     width: 40px;
     height: 40px;
     display: flex;
+    margin-left: 10px;
+    margin-right: 10px;
     justify-content: center;
     align-items: center;
     animation: buttonPop 0.5s ease-in-out;
-    margin-left: 5px;
 }
 
 @keyframes buttonPop {
