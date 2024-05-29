@@ -120,7 +120,7 @@ header {
     color: white;
     align-self: flex-end;
     margin-right: 10px;
-    text-align: right;
+    text-align: left;
 }
 
 .bot-message {
