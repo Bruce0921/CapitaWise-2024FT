@@ -145,7 +145,8 @@ header {
     margin: 0 2px;
     background-color: #0070ba;
     border-radius: 50%;
-    display: inline-block
+    display: inline-block;
+    animation: loading 1s infinite;
 }
 
 @keyframes loading {
