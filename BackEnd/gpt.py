@@ -40,7 +40,7 @@ def distances_from_embeddings(
     return distances
 
 def create_context(
-    question, df, max_len=1800, size="ada"
+    question, df, max_len=1800
 ):
     """
     Create a context for a question by finding the most similar context from the dataframe
@@ -101,11 +101,13 @@ def answer_question(
     """
     Answer a question based on the most similar context from the dataframe texts
     """
+    # add question and conversation history to the context
+    # list to string
+    conv = "\n\n".join([x['content'] for x in conversation_history])
     context = create_context(
-        question,
+        conv + "\n\n" + question,
         df,
-        max_len=max_len,
-        size=size,
+        max_len=max_len
     )
     # If debug, print the raw model response
     if debug:
@@ -115,8 +117,8 @@ def answer_question(
     try:
 
         messages = conversation_history + [
-            {"role": "system", "content": f"{prompt}"},
-            {"role": "user", "content": f"Context: {context}\n\n---\n\nQuestion: {question}\nAnswer:"}
+            {"role": "system", "content": f"{prompt} \n\nContext: {context}"},
+            {"role": "user", "content": f"Question: {question}\nAnswer:"}
         ]
 
         # Create a chat completion using the question and context
