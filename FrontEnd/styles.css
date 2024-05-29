@@ -76,7 +76,7 @@ header {
     to { transform: scale(1); }
 }
 
-.send-button {
+.send-button, .voice-button {
     background-color: #0070ba;
     color: white;
     cursor: pointer;
@@ -89,6 +89,7 @@ header {
     justify-content: center;
     align-items: center;
     animation: buttonPop 0.5s ease-in-out;
+    margin-left: 5px;
 }
 
 @keyframes buttonPop {
@@ -96,7 +97,7 @@ header {
     to { transform: scale(1); }
 }
 
-.send-button:hover {
+.send-button:hover, .voice-button:hover {
     background-color: #005fa3;
 }
 
@@ -119,7 +120,7 @@ header {
     color: white;
     align-self: flex-end;
     margin-right: 10px;
-    text-align: right;
+    text-align: left;
 }
 
 .bot-message {
@@ -164,17 +165,4 @@ header {
 
 .loading-spinner div:nth-child(3) {
     animation-delay: 0.4s;
-}
-
-.message a {
-    color: blue;
-    text-decoration: none;
-}
-
-.message a:hover {
-    text-decoration: underline;
-}
-
-p {
-    margin: 5px 0;
 }

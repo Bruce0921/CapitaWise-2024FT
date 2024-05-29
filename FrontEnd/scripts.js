@@ -5,6 +5,56 @@ document.getElementById('user-input').addEventListener('keypress', function(even
     }
 });
 
+const voiceToggleBtn = document.getElementById('voice-toggle-btn');
+let recognition;
+let recognizing = false;
+
+function initializeRecognition() {
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    recognition = new SpeechRecognition();
+    recognition.interimResults = false;
+    recognition.continuous = true;  // Keep listening continuously
+    recognition.lang = 'en-US';
+
+    recognition.onresult = (event) => {
+        const userInput = event.results[event.results.length - 1][0].transcript;
+        document.getElementById('user-input').value = userInput;
+        sendMessage();
+    };
+
+    recognition.onerror = (event) => {
+        console.error('Speech recognition error detected: ' + event.error);
+        if (event.error === 'no-speech' || event.error === 'aborted') {
+            recognition.stop();
+            recognition.start();
+        }
+    };
+
+    recognition.onend = () => {
+        if (recognizing) {
+            recognition.start();  // Restart recognition when it ends
+        }
+    };
+}
+
+function toggleRecognition() {
+    if (!recognition) {
+        initializeRecognition();
+    }
+
+    if (recognizing) {
+        recognition.stop();
+        voiceToggleBtn.innerHTML = '<i class="fas fa-microphone"></i>';
+    } else {
+        recognition.start();
+        voiceToggleBtn.innerHTML = '<i class="fas fa-microphone-slash"></i>';
+    }
+
+    recognizing = !recognizing;
+}
+
+voiceToggleBtn.addEventListener('click', toggleRecognition);
+
 function sendMessage() {
     const userInput = document.getElementById('user-input').value;
     if (userInput.trim() !== '') {
@@ -56,4 +106,13 @@ async function getBotResponse(userInput) {
     const data = await response.json();
     hideLoadingSpinner();
     addMessageToChat(data, 'bot-message');
+   /*  speakResponse(data); */
 }
+
+/* function speakResponse(text) {
+    const synth = window.speechSynthesis;
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'en-US';
+    synth.speak(utterance);
+}
+ */
