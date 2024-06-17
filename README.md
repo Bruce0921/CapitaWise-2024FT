@@ -1,6 +1,6 @@
 # CapitaWise - AI-Driven Customer Service Chatbot for Chase Bank
 
-[!image](image.png)
+![Image](image.png)
 ## Overview
 
 CapitaWise is an advanced AI-driven chatbot designed to revolutionize customer service for financial institutions, with an initial focus on Chase Bank. Powered by state-of-the-art Large Language Models (LLMs), CapitaWise offers seamless, intuitive, and efficient customer interactions. It addresses common issues faced by traditional customer service approaches and existing chatbot solutions, providing accurate and actionable assistance to users.
